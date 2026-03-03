@@ -1,5 +1,5 @@
 import React from "react";
-import Herobg from "../assets/Hero-bg/bg-hero-1.jpg"
+import Herobg from "../assets/Hero-bg/bg-hero-1.jpg";
 
 export default function Hero() {
 	return (
@@ -11,7 +11,7 @@ export default function Hero() {
 					alt="heor-bg"
 					className="w-full h-full object-cover opacity-20"
 				/>
-        <div className="absolute inset-0 bg-linear-to-b from-black/80 to-transparent"></div>
+				<div className="absolute inset-0 bg-linear-to-b from-black/80 to-transparent"></div>
 			</div>
 
 			{/* Geen Dots */}
@@ -32,13 +32,32 @@ export default function Hero() {
 			</div>
 
 			{/* Content */}
-			<div>
-				<div>
+			<div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
+				<div className="grid lg:grid-cols-2 gap-12 items-center">
 					{/* Left Column - Text Content */}
+					<div className="space-y-8">
+						<div className="animate-fade-in">
+							<span className="inline-flex items-center gap-2 px-4 py-2 rounde-full glass text-sm text-primary">
+								<span className="w-2 h-2 bg-primary rounded-full animate-pulse">
+									Developpeur Web Full-stack • Spécialiste React/Nextjs
+								</span>
+							</span>
+						</div>
+						{/* Headline */}
+						<div>
+							<h1>
+								Code <span className="text-primary glow-text">propre</span>
+								<br />
+								résultats <span className="font-serif italic font-normal text-white">concrets.</span>
+							</h1>
+							<p className="text-lg text-muted-foreground max-w-lg animate-fade-in">
+								Salut, je suis Wilfrid developpeur Full-stack. Je construis des applications web modernes avec React, Next.js et TypeScript — du front soigné au back structuré.
+							</p>
+						</div>
+					</div>
 					{/* Right Column - Profile Image */}
 				</div>
 			</div>
-      
 		</section>
 	);
 }
