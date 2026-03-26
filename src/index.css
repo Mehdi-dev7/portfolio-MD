@@ -52,6 +52,18 @@ body {
 .glow-text {
   text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 50%, transparent);
 }
+
+  /* Accent dégradé pour un mot du hero (lisible sur fond sombre) */
+  .hero-gradient-word {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary) 0%,
+      color-mix(in srgb, var(--color-highlight) 85%, white) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
   @layer utilities {
