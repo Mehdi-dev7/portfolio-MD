@@ -1,29 +1,39 @@
 import { Download } from "lucide-react";
 
-
-export default function AnimatedBorderButton() {
+export default function AnimatedBorderButton({ className = "" }) {
 	return (
-		<button className="relative bg-transparent border border-border text-foreground hover:border-primary/50 transition-all duration-1000 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed group px-8 py-4 text-lg font-medium rounded-full overflow-visible animated-border">
-								{/* Animated SVG Border */}
-								<svg
-								   className="absolute left-0 top-0 w-full h-full pointer-events-none"
-									 viewBox="0 0 200 60"
-									 preserveAspectRatio="none"
-									 style={{ overflow: 'visible' }}
-								>
-									<path
-										d="M 30,1 A 29,29 0 0 0 1,30 L 1,30 A 29,29 0 0 0 30,59 L 170,59 A"
-										fill="none"
-										stroke="var(--color-primary)"
-										strokeWidth="2"
-										strokeDasharray="400 550"
-										strokeDashoffset="400"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										className="download-cv-path"
-									/>
-								</svg>
-								<span className="relative z-10"><Download size={20} /> Télécharger mon CV</span>
-							</button>
+		<button
+			type="button"
+			className={`group relative cursor-pointer overflow-visible rounded-full border border-border bg-transparent px-8 py-4 text-lg font-medium text-foreground transition-all duration-1000 hover:border-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 animated-border ${className}`}
+		>
+			{/* Bordure animée : <rect> = même arrondi partout (évite les pointes des arcs manuels) */}
+			<svg
+				className="animated-border-svg pointer-events-none absolute inset-0 size-full overflow-visible"
+				viewBox="0 0 200 60"
+				preserveAspectRatio="none"
+				aria-hidden
+			>
+				<rect
+					className="animated-border-path"
+					x="1"
+					y="1"
+					width="198"
+					height="58"
+					rx="29"
+					ry="29"
+					pathLength="1000"
+					fill="none"
+					stroke="var(--color-primary)"
+					strokeWidth="2"
+					strokeDasharray="400 600"
+					strokeDashoffset="0"
+					strokeLinecap="butt"
+					strokeLinejoin="round"
+				/>
+			</svg>
+			<span className="relative z-10 flex items-center justify-center gap-2">
+				<Download size={20} /> Télécharger mon CV
+			</span>
+		</button>
 	);
 }

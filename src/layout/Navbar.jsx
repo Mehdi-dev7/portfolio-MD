@@ -1,24 +1,33 @@
 import Button from "@/components/Button";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navLinks = [
-	{ href: "#about", label: "About" },
+	{ href: "#about", label: "À propos" },
 	{ href: "#projets", label: "Projets" },
-	{ href: "#experience", label: "Experience" },
-	{ href: "#testimonials", label: "Testimonials" },
+	{ href: "#experience", label: "Expérience" },
+	{ href: "#testimonials", label: "Témoignages" },
 ];
 
 export default function Navbar() {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isScroll, setIsScroll] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsScroll(window.scrollY > 50);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 	return (
-		<header className="fixed top-0 left-0 right-0 bg-transparent py-5 z-50">
+		<header className={`fixed top-0 left-0 right-0 transition-all duration-300 z-50  ${isScroll ? "glass-strong py-3" : "bg-transparent py-5"}`}>
 			<nav className="container mx-auto px-6 flex items-center justify-between">
 				<a
 					href="#"
 					className="text-xl font-bold tracking-tight text-white hover:text-primary"
 				>
-					PM <span className="text-primary">.</span>
+					WD <span className="text-primary">.</span>
 				</a>
 				{/* Desktop Nav */}
 
@@ -28,7 +37,7 @@ export default function Navbar() {
 							<a
 								key={link.href}
 								href={link.href}
-								className="px-4 py-2 text-sm text-white/70 hover:text-white rounded-full hover:bg-white/10"
+								className="px-4 py-2 text-sm text-white/70 hover:text-white rounded-full hover:bg-primary/20"
 							>
 								{link.label}
 							</a>
@@ -42,9 +51,14 @@ export default function Navbar() {
 				</div>
 
 				{/* Mobile Menu button */}
-				<button className="md:hidden p-2 text-foreground cursor-pointer" onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
+				<button
+					type="button"
+					className="md:hidden p-2 text-foreground cursor-pointer"
+					aria-expanded={isMobileMenuOpen}
+					aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+					onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+				>
 					{isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-					
 				</button>
 			</nav>
 
