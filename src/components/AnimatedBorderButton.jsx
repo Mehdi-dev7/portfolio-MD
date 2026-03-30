@@ -9,6 +9,7 @@ export default function AnimatedBorderButton({
 	children = "Télécharger mon CV",
 	icon = Download,
 	href,
+	...rest
 }) {
 	const inner = (
 		<>
@@ -53,6 +54,7 @@ export default function AnimatedBorderButton({
 				target="_blank"
 				rel="noopener noreferrer"
 				className={combinedClass}
+				{...rest}
 			>
 				{inner}
 			</a>
@@ -60,7 +62,7 @@ export default function AnimatedBorderButton({
 	}
 
 	return (
-		<button type="button" className={combinedClass}>
+		<button {...rest} type="button" className={combinedClass}>
 			{inner}
 		</button>
 	);

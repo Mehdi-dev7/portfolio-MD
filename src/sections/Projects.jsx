@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import ProjectCard from '@/components/ProjectCard'
 import imgFacturnow from '@/images/projets/Projet-Facturnow.png'
@@ -67,7 +67,14 @@ const projects = [
 	
 ];
 
+const INITIAL_VISIBLE = 4;
+const LOAD_MORE_STEP = 2;
+
 export default function Projects() {
+	const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+	const visibleProjects = projects.slice(0, visibleCount);
+	const canLoadMore = visibleCount < projects.length;
+
 	return (
 		<section
 			id="projets"
@@ -117,7 +124,7 @@ export default function Projects() {
 				</div>
 				{/* Projects Grid */}
 				<div className='grid grid-cols-1 lg:grid-cols-2  gap-8'>
-					{projects.map((project, index) => (
+					{visibleProjects.map((project, index) => (
 						<div
 							key={project.title}
 							className="group flex flex-col gap-0 overflow-hidden rounded-xl glass"
@@ -148,11 +155,19 @@ export default function Projects() {
 						</div>
 					))}
 				</div>
-				{/* <div className="mt-14 flex justify-center">
-					<AnimatedBorderButton icon={ArrowUpRight} className="w-full sm:w-auto">
-						Voir tous mes projets
-					</AnimatedBorderButton>
-				</div> */}
+				{canLoadMore && (
+					<div className="mt-14 flex justify-center">
+						<AnimatedBorderButton
+							icon={ArrowUpRight}
+							className="w-full sm:w-auto"
+							onClick={() =>
+								setVisibleCount((n) => Math.min(n + LOAD_MORE_STEP, projects.length))
+							}
+						>
+							Voir plus de projets
+						</AnimatedBorderButton>
+					</div>
+				)}
 			</div>
 		</section>
 	);
