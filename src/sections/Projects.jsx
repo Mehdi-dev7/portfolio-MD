@@ -5,6 +5,8 @@ import imgFacturnow from '@/images/projets/Projet-Facturnow.png'
 import imgLadyHaya from '@/images/projets/Projet-Lady-Haya.png'
 import imgSetup from '@/images/projets/Projet-Setup.png'
 import imgSelmalya from '@/images/projets/Projet-Selmalya.png'
+import imgDashboardSaaS from '@/images/projets/Projet-Dashboard.png'
+import imgCloneThreads from '@/images/projets/Projet-thread-clone.png'
 import AnimatedBorderButton from '@/components/AnimatedBorderButton'
 
 /** Aligné sur About : positions stables pour les points. */
@@ -46,6 +48,23 @@ const projects = [
 		link: 'https://www.selmalya-tiers-payant.fr/',
 		github: 'https://github.com/Mehdi-dev7/Selmalya',
 	},
+	{
+		title: 'Dashboard SaaS',
+		description: 'Dashboard SaaS est un dashboard Admin pour une application SaaS.',
+		image: imgDashboardSaaS,
+		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
+		link: 'https://dashboard-saas-mehdi.netlify.app/',
+		github: 'https://github.com/Mehdi-dev7/dashboard-saas',
+	},
+	{
+		title: 'Clone Threads',
+		description: 'Clone Threads est un clone de la plateforme Threads.',
+		image: imgCloneThreads,
+		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
+		link: 'https://clone-threads.netlify.app/login',
+		github: 'https://github.com/Mehdi-dev7/clone-threads',
+	},
+	
 ];
 
 export default function Projects() {
@@ -129,11 +148,11 @@ export default function Projects() {
 						</div>
 					))}
 				</div>
-				<div className="mt-14 flex justify-center">
+				{/* <div className="mt-14 flex justify-center">
 					<AnimatedBorderButton icon={ArrowUpRight} className="w-full sm:w-auto">
 						Voir tous mes projets
 					</AnimatedBorderButton>
-				</div>
+				</div> */}
 			</div>
 		</section>
 	);

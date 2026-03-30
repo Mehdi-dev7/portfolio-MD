@@ -149,23 +149,13 @@ export default function Hero() {
 							>
 								Contactez-Moi <ArrowRight size={20} />
 							</Button>
-							<div className="flex w-full flex-col items-center gap-1.5 sm:w-auto sm:items-start">
-								<AnimatedBorderButton
-									className="w-full sm:w-auto"
-									href={CV_VIRTUAL_URL}
-									icon={ExternalLink}
-								>
-									Voir mon CV virtuel
-								</AnimatedBorderButton>
-								<a
-									href={CV_VIRTUAL_URL}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="max-w-full truncate text-center text-xs text-muted-foreground underline-offset-2 transition-colors hover:text-primary hover:underline sm:text-left"
-								>
-									{CV_VIRTUAL_URL.replace(/^https:\/\//, "")}
-								</a>
-							</div>
+							<AnimatedBorderButton
+								className="w-full sm:w-auto"
+								href={CV_VIRTUAL_URL}
+								icon={ExternalLink}
+							>
+								Voir mon CV virtuel
+							</AnimatedBorderButton>
 						</div>
 						{/* Social Links — icônes Lucide : Github, Linkedin, Instagram */}
 						<div className="flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-in animation-delay-400">
