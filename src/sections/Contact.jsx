@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
 import Button from "@/components/Button";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import emailjs from "@emailjs/browser";
+import { Mail, MapPin, Send } from "lucide-react";
+import React, { useState } from "react";
 
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY ?? "";
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID ?? "";
@@ -26,10 +27,10 @@ const contactInfo = [
 		href: "mailto:mehdi.dev77@gmail.com",
 	},
 	{
-		icon: <Phone size={20} />,
-		label: "Téléphone",
+		icon: <WhatsAppIcon size={20} />,
+		label: "WhatsApp",
 		value: "+33 6 50 15 70 32",
-		href: "tel:+33650157032",
+		href: "https://wa.me/33650157032",
 	},
 	{
 		icon: <MapPin size={20} />,
@@ -88,7 +89,7 @@ export default function Contact() {
 			aria-label="Contact"
 		>
 			<div
-				className="pointer-events-none absolute inset-0 z-0 bg-linear-to-b from-primary/6 via-transparent to-transparent"
+				className="pointer-events-none absolute inset-0 z-0"
 				aria-hidden
 			/>
 			<div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -126,47 +127,80 @@ export default function Contact() {
 						</span>
 					</h2>
 					<p className="animation-delay-200 animate-fade-in text-muted-foreground">
-						Un projet en tête ? J’aimerais en discuter. Envoyez-moi un message et voyons comment
-						collaborer.
+						Un projet en tête ? J’aimerais en discuter. Envoyez-moi un message
+						et voyons comment collaborer.
 					</p>
 				</div>
 
-				<div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 lg:grid-cols-2">
-					<div className="animation-delay-300 flex flex-col gap-4 animate-fade-in lg:order-2">
-						{contactInfo.map((item) => (
-							<a
-								key={item.label}
-								href={item.href}
-								className="glass flex items-start gap-4 rounded-2xl border border-border/50 p-5 transition-colors hover:border-primary/40"
-							>
-								<span className="mt-0.5 shrink-0 text-primary">{item.icon}</span>
-								<div>
-									<p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-										{item.label}
-									</p>
-									<p className="mt-1 text-sm text-foreground">{item.value}</p>
-								</div>
-							</a>
-						))}
+				<div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-12 lg:grid-cols-2">
+					{/* Contact Info */}
+					<div className="animation-delay-400 animate-fade-in space-y-6 lg:order-2 ">
+						<div className="glass rounded-3xl p-8 border border-primary/30">
+							<h3 className="text-xl font-semibold mb-6">Informations de contact</h3>
+							<div className="space-y-4">
+								{contactInfo.map((item) => (
+									<a
+										key={item.label}
+										href={item.href}
+										className="flex items-center gap-4 rounded-xl border border-primary/30 p-4 transition-colors hover:bg-surface group"
+									>
+										<span className="mt-0.5 shrink-0 text-primary">
+											{item.icon}
+										</span>
+										<div>
+											<p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+												{item.label}
+											</p>
+											<p className="mt-1 text-sm text-foreground">
+												{item.value}
+											</p>
+										</div>
+									</a>
+								))}
+							</div>
+						</div>
+            {/* Availability Card */}
+            <div className="glass rounded-3xl p-8 border border-primary/30">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                <span className="font-medium"></span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+              Je suis actuellement ouvert aux nouvelles opportunités et aux projets stimulants.Que vous cherchiez un developpeur à temps plein ou un consultant freelance, discutons-en!
+              </p>
+            </div>
 					</div>
+					{/* Contact Form */}
 					<div className="glass animation-delay-300 animate-fade-in rounded-3xl border border-primary/30 p-8 lg:order-1">
 						{!emailJsConfigured && (
 							<p
 								className="mb-4 rounded-xl border border-highlight/40 bg-highlight/10 px-4 py-3 text-sm text-muted-foreground"
 								role="status"
 							>
-								<strong className="text-foreground">Configuration EmailJS :</strong> créez un fichier{" "}
-								<code className="rounded bg-surface px-1 text-xs text-primary">.env</code> à la racine
-								à partir de <code className="rounded bg-surface px-1 text-xs">.env.example</code>, puis
-								renseignez la clé publique, le service et le modèle (variables{" "}
-								<code className="text-xs text-primary">name</code>,{" "}
+								<strong className="text-foreground">
+									Configuration EmailJS :
+								</strong>{" "}
+								créez un fichier{" "}
+								<code className="rounded bg-surface px-1 text-xs text-primary">
+									.env
+								</code>{" "}
+								à la racine à partir de{" "}
+								<code className="rounded bg-surface px-1 text-xs">
+									.env.example
+								</code>
+								, puis renseignez la clé publique, le service et le modèle
+								(variables <code className="text-xs text-primary">name</code>,{" "}
 								<code className="text-xs text-primary">email</code>,{" "}
-								<code className="text-xs text-primary">message</code> dans le template EmailJS).
+								<code className="text-xs text-primary">message</code> dans le
+								template EmailJS).
 							</p>
 						)}
 						<form className="space-y-6" noValidate onSubmit={handleSubmit}>
 							<div>
-								<label htmlFor="name" className="mb-2 block text-sm font-medium">
+								<label
+									htmlFor="name"
+									className="mb-2 block text-sm font-medium"
+								>
 									Nom
 								</label>
 								<input
@@ -183,7 +217,10 @@ export default function Contact() {
 								/>
 							</div>
 							<div>
-								<label htmlFor="email" className="mb-2 block text-sm font-medium">
+								<label
+									htmlFor="email"
+									className="mb-2 block text-sm font-medium"
+								>
 									E-mail
 								</label>
 								<input
@@ -200,7 +237,10 @@ export default function Contact() {
 								/>
 							</div>
 							<div>
-								<label htmlFor="message" className="mb-2 block text-sm font-medium">
+								<label
+									htmlFor="message"
+									className="mb-2 block text-sm font-medium"
+								>
 									Message
 								</label>
 								<textarea
@@ -229,8 +269,8 @@ export default function Contact() {
 									className="rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-foreground"
 									role="alert"
 								>
-									Envoi impossible pour le moment. Réessayez plus tard ou écrivez-moi directement par
-									e-mail.
+									Envoi impossible pour le moment. Réessayez plus tard ou
+									écrivez-moi directement par e-mail.
 								</p>
 							)}
 

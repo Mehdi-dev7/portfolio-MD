@@ -4,8 +4,8 @@ import Experience from "@/sections/Experience";
 import Projects from "@/sections/Projects";
 import Testimonials from "@/sections/Testimonials";
 import Contact from "@/sections/Contact";
+import Footer from "@/layout/Footer";
 import Navbar from "@/layout/Navbar";
-
 
 function App() {
 	return (
@@ -14,8 +14,9 @@ function App() {
 				<Navbar />
 				<main>
 					<Hero />
-					<About />  <Projects /> <Experience /> <Testimonials /> <Contact />
+					<About /> <Projects /> <Experience /> <Testimonials /> <Contact />
 				</main>
+				<Footer />
 			</div>
 		</>
 	);

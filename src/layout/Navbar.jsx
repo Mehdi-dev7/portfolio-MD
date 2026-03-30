@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import { scrollToHash } from "@/utils/scrollToHash";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -8,15 +9,6 @@ const navLinks = [
 	{ href: "#experience", label: "Expérience" },
 	{ href: "#testimonials", label: "Témoignages" },
 ];
-
-function scrollToHash(href) {
-	const id = href.replace(/^#/, "");
-	const el = document.getElementById(id);
-	if (el) {
-		el.scrollIntoView({ behavior: "smooth", block: "start" });
-		window.history.replaceState(null, "", href);
-	}
-}
 
 export default function Navbar() {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,7 +22,13 @@ export default function Navbar() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 	return (
-		<header className={`fixed top-0 left-0 right-0 transition-all duration-200 ease-in-out z-50  ${isScroll ? "glass-strong py-3" : "bg-transparent py-5"}`}>
+		<header
+			className={`fixed top-0 right-0 left-0 z-50 overflow-hidden border-b backface-hidden transition-[padding,background-color,border-color] duration-200 ease-out motion-reduce:transition-none ${
+				isScroll
+					? "border-border/50 bg-surface/85 py-3 shadow-[0_1px_0_0_rgba(15,20,24,0.95)] backdrop-blur-xl"
+					: "border-transparent bg-transparent py-5 backdrop-blur-none"
+			}`}
+		>
 			<nav className="container mx-auto px-6 flex items-center justify-between">
 				<a
 					href="#"
@@ -60,7 +58,9 @@ export default function Navbar() {
 
 				{/* CTA Button */}
 				<div className="hidden md:block">
-					<Button size="sm">Contactez-Moi</Button>
+					<Button size="sm" type="button" onClick={() => scrollToHash("#contact")}>
+						Contactez-Moi
+					</Button>
 				</div>
 
 				{/* Mobile Menu button */}
@@ -93,7 +93,15 @@ export default function Navbar() {
 								{link.label}
 							</a>
 						))}
-						<Button onClick={() => setIsMobileMenuOpen(false)}>Contactez-Moi</Button>
+						<Button
+							type="button"
+							onClick={() => {
+								scrollToHash("#contact");
+								setIsMobileMenuOpen(false);
+							}}
+						>
+							Contactez-Moi
+						</Button>
 					</div>
 				</div>
 			)}

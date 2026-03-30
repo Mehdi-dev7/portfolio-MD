@@ -1,5 +1,6 @@
 import AnimatedBorderButton from "@/components/AnimatedBorderButton";
 import Button from "@/components/Button";
+import { scrollToHash } from "@/utils/scrollToHash";
 import {
 	ArrowRight,
 	ChevronDown,
@@ -137,7 +138,12 @@ export default function Hero() {
 
 						{/* CTAs — colonne sur mobile, ligne à partir de sm */}
 						<div className="flex w-full flex-col gap-4 animate-fade-in animation-delay-300 sm:flex-row sm:flex-wrap sm:items-center">
-							<Button size="lg" className="w-full justify-center sm:w-auto">
+							<Button
+								type="button"
+								size="lg"
+								className="w-full justify-center sm:w-auto"
+								onClick={() => scrollToHash("#contact")}
+							>
 								Contactez-Moi <ArrowRight size={20} />
 							</Button>
 							<AnimatedBorderButton className="w-full sm:w-auto" />
