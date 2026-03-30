@@ -85,7 +85,7 @@ export default function Contact() {
 	return (
 		<section
 			id="contact"
-			className="relative scroll-mt-24 overflow-hidden py-16 md:scroll-mt-28"
+			className="relative scroll-mt-24 overflow-hidden py-16 md:scroll-mt-28 mb-16"
 			aria-label="Contact"
 		>
 			<div

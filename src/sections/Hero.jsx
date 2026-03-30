@@ -4,10 +4,13 @@ import { scrollToHash } from "@/utils/scrollToHash";
 import {
 	ArrowRight,
 	ChevronDown,
+	ExternalLink,
 	Github,
 	Instagram,
 	Linkedin,
 } from "lucide-react";
+
+const CV_VIRTUAL_URL = "https://cv-didou.netlify.app/";
 import React from "react";
 import Herobg from "../assets/Hero-bg/bg-hero-1.jpg";
 import profilePhoto from "../images/IMG-moi.jpg";
@@ -146,7 +149,23 @@ export default function Hero() {
 							>
 								Contactez-Moi <ArrowRight size={20} />
 							</Button>
-							<AnimatedBorderButton className="w-full sm:w-auto" />
+							<div className="flex w-full flex-col items-center gap-1.5 sm:w-auto sm:items-start">
+								<AnimatedBorderButton
+									className="w-full sm:w-auto"
+									href={CV_VIRTUAL_URL}
+									icon={ExternalLink}
+								>
+									Voir mon CV virtuel
+								</AnimatedBorderButton>
+								<a
+									href={CV_VIRTUAL_URL}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="max-w-full truncate text-center text-xs text-muted-foreground underline-offset-2 transition-colors hover:text-primary hover:underline sm:text-left"
+								>
+									{CV_VIRTUAL_URL.replace(/^https:\/\//, "")}
+								</a>
+							</div>
 						</div>
 						{/* Social Links — icônes Lucide : Github, Linkedin, Instagram */}
 						<div className="flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-in animation-delay-400">
