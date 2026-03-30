@@ -5,7 +5,7 @@ import imgFacturnow from '@/images/projets/Projet-Facturnow.png'
 import imgLadyHaya from '@/images/projets/Projet-Lady-Haya.png'
 import imgSetup from '@/images/projets/Projet-Setup.png'
 import imgSelmalya from '@/images/projets/Projet-Selmalya.png'
-import imgDashboardSaaS from '@/images/projets/Projet-Dashboard.png'
+import imgDashboardSaaS from '@/images/projets/Projet-dashboard.png'
 import imgCloneThreads from '@/images/projets/Projet-thread-clone.png'
 import AnimatedBorderButton from '@/components/AnimatedBorderButton'
 
