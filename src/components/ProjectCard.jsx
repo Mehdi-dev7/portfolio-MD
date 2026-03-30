@@ -3,7 +3,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 export default function ProjectCard({ project, index }) {
 	return (
 		<div
-			className="glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1"
+			className="overflow-hidden animate-fade-in md:row-span-1"
 			style={{ animationDelay: index != null ? `${(index + 1) * 100}ms` : undefined }}
 		>
 			{/* Calque image (z-0) séparé : le scale reste sous l’overlay. Hover via CSS natif (pas group-hover). */}

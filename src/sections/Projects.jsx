@@ -5,6 +5,7 @@ import imgFacturnow from '@/images/projets/Projet-Facturnow.png'
 import imgLadyHaya from '@/images/projets/Projet-Lady-Haya.png'
 import imgSetup from '@/images/projets/Projet-Setup.png'
 import imgSelmalya from '@/images/projets/Projet-Selmalya.png'
+import AnimatedBorderButton from '@/components/AnimatedBorderButton'
 
 /** Aligné sur About : positions stables pour les points. */
 function dotVariation(index, salt) {
@@ -56,7 +57,7 @@ export default function Projects() {
 		>
 			{/* Fond : dégradé + points (même principe que About) */}
 			<div
-				className="pointer-events-none absolute inset-0 z-0 bg-linear-to-b from-primary/6 via-transparent to-transparent"
+				className="pointer-events-none absolute inset-0 z-0"
 				aria-hidden
 			/>
 			<div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -82,17 +83,26 @@ export default function Projects() {
 			</div>
 			<div className="relative z-10 container mx-auto px-6">
 				{/* Section Header */}
-				<div className='text-center mx-auto max-w-3xl mb-16'>
-					<span className='text-secondary-foreground text-sm font-medium uppercase tracking-wider animate-fade-in'>Featured Work</span>
-					<h2 className='text-4xl md:text-5xl font-bold mt-4 mb-6 text-secondary-foreground animate-fade-in animation-delay-100'>Projects that
-					<span className='font-serif italic font-normal text-white'> {" "} make a impact.</span>
+				<div className="mx-auto mb-16 max-w-3xl text-center">
+					<span className="animate-fade-in text-sm font-medium tracking-wider text-secondary-foreground uppercase">
+						Projets phares
+					</span>
+					<h2 className="animation-delay-100 mt-4 mb-6 animate-fade-in text-4xl font-bold text-secondary-foreground md:text-5xl">
+						Des projets qui{" "}
+						<span className="font-serif font-normal text-white italic">font la différence.</span>
 					</h2>
-					<p className='text-muted-foreground animate-fade-in animation-delay-200'>A selection of my recent work, from complex web applications to innovative tools that automate tasks and improve workflows.</p>
+					<p className="animation-delay-200 animate-fade-in text-muted-foreground">
+						Une sélection de réalisations récentes : applications web exigeantes, outils innovants,
+						automatisation et workflows plus fluides.
+					</p>
 				</div>
 				{/* Projects Grid */}
-				<div className='grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8'>
+				<div className='grid grid-cols-1 lg:grid-cols-2  gap-8'>
 					{projects.map((project, index) => (
-						<div key={project.title} className="group flex flex-col gap-4 bg-card">
+						<div
+							key={project.title}
+							className="group flex flex-col gap-0 overflow-hidden rounded-xl glass"
+						>
 							<ProjectCard project={project} index={index} />
 							<div className="space-y-4 p-6">
 								<div className="flex items-start justify-between">
@@ -100,7 +110,7 @@ export default function Projects() {
 										{project.title}
 									</h3>
 									<ArrowUpRight
-										className="size-5 text-muted-foreground transition-all group-hover:translate-x-1 group-hover:translate-y-1 group-hover:text-primary"
+										className="size-5 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary"
 										aria-hidden
 									/>
 								</div>
@@ -118,6 +128,11 @@ export default function Projects() {
 							</div>
 						</div>
 					))}
+				</div>
+				<div className="mt-14 flex justify-center">
+					<AnimatedBorderButton icon={ArrowUpRight} className="w-full sm:w-auto">
+						Voir tous mes projets
+					</AnimatedBorderButton>
 				</div>
 			</div>
 		</section>

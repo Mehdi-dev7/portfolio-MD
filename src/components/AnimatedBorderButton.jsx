@@ -1,6 +1,11 @@
+import { createElement } from "react";
 import { Download } from "lucide-react";
 
-export default function AnimatedBorderButton({ className = "" }) {
+export default function AnimatedBorderButton({
+	className = "",
+	children = "Télécharger mon CV",
+	icon = Download,
+}) {
 	return (
 		<button
 			type="button"
@@ -32,7 +37,8 @@ export default function AnimatedBorderButton({ className = "" }) {
 				/>
 			</svg>
 			<span className="relative z-10 flex items-center justify-center gap-2">
-				<Download size={20} /> Télécharger mon CV
+				{children}
+				{createElement(icon, { size: 20, "aria-hidden": true })}
 			</span>
 		</button>
 	);

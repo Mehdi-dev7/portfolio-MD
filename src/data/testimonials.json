@@ -1,0 +1,32 @@
+[
+	{
+		"quote": "Wilfrid a livré une interface Next.js propre et performante, avec une vraie écoute sur les contraintes métier. Communication claire et itérations rapides.",
+		"author": "Claire Dumont",
+		"role": "Cheffe de produit",
+		"company": "SaaS B2B"
+	},
+	{
+		"quote": "Autonome sur React et TypeScript, il a su intégrer notre design system et proposer des améliorations UX pertinentes. Je recommande pour du front exigeant.",
+		"author": "Marc Lefèvre",
+		"role": "Lead développement",
+		"company": "Agence web"
+	},
+	{
+		"quote": "Excellente collaboration sur un outil interne : APIs, formulaires complexes, déploiement sans surprise. Du code lisible et documenté.",
+		"author": "Julie Bernard",
+		"role": "CTO",
+		"company": "Startup"
+	},
+	{
+		"quote": "Sérieux, curieux des outils (IA, automatisation) sans les mettre partout pour autant. Le projet a été tenu dans les délais annoncés.",
+		"author": "Thomas Renard",
+		"role": "Fondateur",
+		"company": "E-commerce"
+	},
+	{
+		"quote": "Un profil full-stack orienté qualité : revues de code constructives, tests là où il fallait, et une vraie volonté de maintenabilité.",
+		"author": "Émilie Faure",
+		"role": "Engineering Manager",
+		"company": "Scale-up"
+	}
+]
