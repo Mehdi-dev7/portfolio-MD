@@ -3,7 +3,7 @@
  * Renseignez la chaîne ci-dessous, ou laissez vide et utilisez plutôt VITE_COMPANY_NAME
  * (variables d’environnement, ex. Netlify).
  */
-const COMPANY_NAME_FROM_FILE = "";
+const COMPANY_NAME_FROM_FILE = "MD Tech Digital";
 
 export const COMPANY_NAME =
 	COMPANY_NAME_FROM_FILE.trim() ||
