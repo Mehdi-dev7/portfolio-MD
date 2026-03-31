@@ -129,7 +129,7 @@ export default function Hero() {
 								<strong className="font-semibold text-foreground/90">
 									Wilfrid
 								</strong>{" "}
-								— je conçois des applications web (React, Next.js, TypeScript)
+								— je crée des applications web (React, Next.js, TypeScript)
 								et j’intègre{" "}
 								<strong className="font-semibold text-primary/95">
 									l’IA et l’automatisation
