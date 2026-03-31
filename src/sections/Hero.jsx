@@ -11,7 +11,9 @@ import {
 } from "lucide-react";
 
 const CV_VIRTUAL_URL = "https://cv-didou.netlify.app/";
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import openaiLogo from "@/assets/icons/openai.svg";
+import reactNativeLogo from "@/assets/icons/react-native.svg";
 import Herobg from "../assets/Hero-bg/bg-hero-1.jpg";
 import profilePhoto from "../images/IMG-moi.jpg";
 
@@ -39,6 +41,123 @@ const skills = [
 	"OpenAI",
 	"Claude",
 ];
+
+/** Slugs [Simple Icons](https://simpleicons.org) — teinte proche du primary du thème */
+const SKILL_ICON_SLUG = {
+	React: "react",
+	"Next.js": "nextdotjs",
+	TypeScript: "typescript",
+	"Tailwind CSS": "tailwindcss",
+	"Node.js": "nodedotjs",
+	Prisma: "prisma",
+	Supabase: "supabase",
+	Git: "git",
+	GitHub: "github",
+	PostgreSQL: "postgresql",
+	MySQL: "mysql",
+	MongoDB: "mongodb",
+	N8N: "n8n",
+	Claude: "claude",
+};
+
+const SKILL_ICON_TINT = "20b2a6";
+
+function SkillChip({ skill }) {
+	const slug = SKILL_ICON_SLUG[skill];
+	const iconSrc =
+		skill === "React Native"
+			? reactNativeLogo
+			: skill === "OpenAI"
+				? openaiLogo
+				: slug
+					? `https://cdn.simpleicons.org/${slug}/${SKILL_ICON_TINT}`
+					: null;
+	return (
+		<div className="flex shrink-0 items-center gap-2.5 px-5 py-3 sm:gap-3 sm:px-8 sm:py-4">
+			{iconSrc ? (
+				<img
+					src={iconSrc}
+					alt=""
+					width={24}
+					height={24}
+					className={`shrink-0 object-contain object-left sm:h-6 sm:w-6 ${skill === "OpenAI" ? "h-5 w-[1.35rem] sm:h-6 sm:w-7" : "h-5 w-5"} ${skill === "React Native" || skill === "OpenAI" ? "opacity-100" : "opacity-90"}`}
+					loading="lazy"
+					decoding="async"
+				/>
+			) : null}
+			<span className="text-lg font-semibold text-muted-foreground/50 transition-colors duration-300 hover:text-muted-foreground sm:text-xl">
+				{skill}
+			</span>
+		</div>
+	);
+}
+
+/** Mobile : défilement auto + possibilité de glisser pour aller plus vite (pause le temps du geste). */
+function MobileSkillsScroller({ skillList }) {
+	const ref = useRef(null);
+	const [paused, setPaused] = useState(false);
+	const resumeTimerRef = useRef(null);
+
+	const onUserStart = useCallback(() => {
+		setPaused(true);
+		if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+	}, []);
+
+	const onUserEnd = useCallback(() => {
+		if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+		resumeTimerRef.current = setTimeout(() => setPaused(false), 3800);
+	}, []);
+
+	useEffect(
+		() => () => {
+			if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+		},
+		[],
+	);
+
+	useEffect(() => {
+		let raf = 0;
+		const step = () => {
+			const node = ref.current;
+			if (
+				node &&
+				!window.matchMedia("(min-width: 640px)").matches &&
+				!window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+				!paused
+			) {
+				node.scrollLeft += 0.42;
+				const half = node.scrollWidth / 2;
+				if (half > 20 && node.scrollLeft >= half - 0.5) {
+					node.scrollLeft -= half;
+				}
+			}
+			raf = requestAnimationFrame(step);
+		};
+		raf = requestAnimationFrame(step);
+		return () => cancelAnimationFrame(raf);
+	}, [paused]);
+
+	return (
+		<>
+			<div
+				ref={ref}
+				className="-mx-2 flex gap-0 overflow-x-auto overflow-y-visible overscroll-x-contain px-2 pb-1 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+				role="region"
+				aria-label="Technologies — défilement automatique ; glissez pour parcourir plus vite"
+				onTouchStart={onUserStart}
+				onTouchEnd={onUserEnd}
+				onPointerDown={onUserStart}
+				onPointerUp={onUserEnd}
+				onPointerLeave={onUserEnd}
+			>
+				{[...skillList, ...skillList].map((skill, idx) => (
+					<SkillChip key={idx} skill={skill} />
+				))}
+			</div>
+			
+		</>
+	);
+}
 
 export default function Hero() {
 	return (
@@ -230,14 +349,16 @@ export default function Hero() {
 					<p className="mb-8 text-center text-xs sm:text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground/90">
 						Technologies que j'utilise :
 					</p>
-					<div className="relative overflow-hidden">
-						<div className="flex animate-marquee">
+					<div className="sm:hidden">
+						<MobileSkillsScroller skillList={skills} />
+					</div>
+					{/*
+					  sm+ : marquee infini — w-max pour que -50% = une série (boucle sans saut).
+					*/}
+					<div className="relative hidden overflow-hidden sm:block">
+						<div className="flex w-max animate-marquee">
 							{[...skills, ...skills].map((skill, idx) => (
-								<div key={idx} className="shrink-0 px-8 py-4">
-									<span className="text-xl font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300">
-										{skill}
-									</span>
-								</div>
+								<SkillChip key={idx} skill={skill} />
 							))}
 						</div>
 					</div>
