@@ -21,6 +21,8 @@
 
   --color-highlight: #f5a623;
   --color-surface: #1a2329;
+
+  --breakpoint-xs: 25rem;
 }
 
 html {

@@ -14,5 +14,10 @@
 		"prenom": "Ilham",
 		"avis": "Trés satisfaite du rendu, le site livré correspond exactement à ce que je voulais pour mon activité. Je me sens en confiance pour faire évoluer le projet plus tard. Merci encore pour ce travail soigné !",
 		"rating": 5
+	},
+	{
+		"prenom": "Camille",
+		"avis": "Je tenais à laisser un avis détaillé parce que la collaboration a vraiment dépassé mes attentes sur tous les plans. Dès le premier échange, j’ai senti une écoute attentive : on a pris le temps de cadrer mes objectifs, mon public, et les contraintes réelles de mon activité avant même de parler technique. Les maquettes et les itérations ont été fluides, avec des propositions pertinentes quand je bloquais sur une idée. Côté développement, tout était propre, documenté, et les délais annoncés ont été tenus — ce qui compte énormément quand on lance un site en parallèle d’une charge de travail déjà dense. Les performances et le responsive étaient au rendez-vous, et les petits ajustements post-livraison ont été traités rapidement. La communication restait claire, sans jargon inutile, ce qui m’a permis de valider les choix en confiance. Bref : professionnalisme, rigueur et une vraie volonté que le produit final serve mes clients, pas seulement une vitrine. Je recommande sans hésiter et je repasserai par ici pour les évolutions futures.",
+		"rating": 5
 	}
 ]

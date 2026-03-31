@@ -10,6 +10,19 @@ function dotVariation(index, salt) {
 
 const ROTATION_MS = 7000;
 const MAX_STARS = 5;
+/** Affichage des avis : au-delà, troncature + « … » (texte complet conservé pour l’accessibilité). */
+const AVIS_MAX_WORDS = 70;
+
+function truncateWords(text, maxWords) {
+	const words = String(text).trim().split(/\s+/).filter(Boolean);
+	if (words.length <= maxWords) {
+		return { display: String(text).trim(), truncated: false };
+	}
+	return {
+		display: `${words.slice(0, maxWords).join(" ")}…`,
+		truncated: true,
+	};
+}
 
 function clampRating(n) {
 	const x = Number(n);
@@ -241,14 +254,16 @@ export default function Testimonials() {
 						}}
 					>
 						{/*
-						  Pas de min-h en vh : les cartes sont en absolute → un min-height en % du viewport
-						  crée une grande zone vide entre le bas visuel des cartes et les flèches.
+						  Très petits écrans (sous 25rem / xs) : min-h de base — les cartes sont en absolute,
+						  sans hauteur le bloc s’effondre. À partir de xs, zone plus haute (téléphones classiques).
 						*/}
-						<div className="relative mx-auto min-h-[300px] w-full max-w-lg overflow-x-hidden overflow-y-visible px-3 pb-0 perspective-[1100px] sm:min-h-[360px] sm:overflow-visible sm:px-6 md:min-h-[380px]">
+						<div className="relative mx-auto min-h-[min(36rem,82svh)] xs:min-h-[min(28rem,78svh)] w-full max-w-lg overflow-x-hidden overflow-y-visible px-3 pb-3 perspective-[1100px] sm:min-h-[360px] sm:pb-0 sm:overflow-visible sm:px-6 md:min-h-[380px] mb-0 md:mb-30">
 						{testimonials.map((t, index) => {
 							const pos = (index - active + n) % n;
 							const layer = stackLayer(pos, compactStack);
 							const hidden = pos >= stackDepth;
+							const { display: avisDisplay, truncated: avisTruncated } =
+								truncateWords(t.avis, AVIS_MAX_WORDS);
 							return (
 								<article
 									key={index}
@@ -280,8 +295,15 @@ export default function Testimonials() {
 										strokeWidth={1.25}
 										aria-hidden
 									/>
-									<blockquote className="text-foreground/95 leading-relaxed">
-										<p className="text-base md:text-lg">&ldquo;{t.avis}&rdquo;</p>
+									<blockquote
+										className="text-foreground/95 leading-relaxed"
+										{...(avisTruncated
+											? { "aria-label": t.avis }
+											: {})}
+									>
+										<p className="text-base leading-relaxed md:text-lg">
+											&ldquo;{avisDisplay}&rdquo;
+										</p>
 									</blockquote>
 									<footer className="mt-4 sm:mt-6 border-t border-border/40 pt-3 sm:pt-5">
 										<StarRating value={t.rating} />
@@ -292,7 +314,7 @@ export default function Testimonials() {
 						})}
 						</div>
 
-						<div className="mx-auto mt-6 flex w-full max-w-lg flex-wrap items-center justify-center gap-3 sm:mt-2 sm:gap-5">
+						<div className="mx-auto mt-8 flex w-full max-w-lg flex-wrap items-center justify-center gap-3 sm:mt-2 sm:gap-5">
 							<button
 								type="button"
 								onClick={goPrev}
