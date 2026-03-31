@@ -1,3 +1,4 @@
+import { COMPANY_NAME } from "@/constants/site";
 import { scrollToHash } from "@/utils/scrollToHash";
 import { ArrowUp, Github, Instagram, Linkedin } from "lucide-react";
 import { createElement } from "react";
@@ -54,6 +55,9 @@ export default function Footer() {
 							Portfolio vitrine — développement web et projets perso. Pas de cookies
 							commerciaux ici, juste du code et des idées.
 						</p>
+						{COMPANY_NAME ? (
+							<p className="text-sm font-medium text-foreground/90">{COMPANY_NAME}</p>
+						) : null}
 					</div>
 
 					<div>
@@ -101,7 +105,14 @@ export default function Footer() {
 
 				<div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-8 sm:flex-row">
 					<p className="text-center text-xs text-muted-foreground sm:text-left">
-						© {year} Wilfrid · fait avec{" "}
+						© {year}{" "}
+						{COMPANY_NAME ? (
+							<>
+								{COMPANY_NAME}
+								{" · "}
+							</>
+						) : null}
+						Wilfrid · fait avec{" "}
 						<span className="text-primary/90">React</span> et{" "}
 						<span className="text-primary/90">Vite</span>
 					</p>

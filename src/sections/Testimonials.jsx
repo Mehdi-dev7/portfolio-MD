@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import testimonials from "@/data/testimonials.json";
 
 /** Aligné sur Projects : positions stables pour les points. */
@@ -9,6 +9,37 @@ function dotVariation(index, salt) {
 }
 
 const ROTATION_MS = 7000;
+const MAX_STARS = 5;
+
+function clampRating(n) {
+	const x = Number(n);
+	if (Number.isNaN(x)) return 0;
+	return Math.min(MAX_STARS, Math.max(0, Math.round(x)));
+}
+
+function StarRating({ value }) {
+	const v = clampRating(value);
+	return (
+		<div
+			className="flex gap-0.5"
+			role="img"
+			aria-label={`${v} étoile${v > 1 ? "s" : ""} sur ${MAX_STARS}`}
+		>
+			{[...Array(MAX_STARS)].map((_, i) => (
+				<Star
+					key={i}
+					className={`size-4 shrink-0 sm:size-4.5 ${
+						i < v
+							? "fill-highlight text-highlight"
+							: "fill-none text-muted-foreground/45"
+					}`}
+					strokeWidth={1.35}
+					aria-hidden
+				/>
+			))}
+		</div>
+	);
+}
 
 /** Desktop : pile marquée. Mobile : décalages réduits pour éviter le débordement latéral / bas. */
 const STACK_DEPTH_DESKTOP = 4;
@@ -250,14 +281,11 @@ export default function Testimonials() {
 										aria-hidden
 									/>
 									<blockquote className="text-foreground/95 leading-relaxed">
-										<p className="text-base md:text-lg">&ldquo;{t.quote}&rdquo;</p>
+										<p className="text-base md:text-lg">&ldquo;{t.avis}&rdquo;</p>
 									</blockquote>
 									<footer className="mt-4 sm:mt-6 border-t border-border/40 pt-3 sm:pt-5">
-										<p className="font-semibold text-foreground">{t.author}</p>
-										<p className="text-sm text-muted-foreground">
-											{t.role}
-											{t.company ? ` · ${t.company}` : ""}
-										</p>
+										<StarRating value={t.rating} />
+										<p className="mt-2 font-semibold text-foreground">{t.prenom}</p>
 									</footer>
 								</article>
 							);

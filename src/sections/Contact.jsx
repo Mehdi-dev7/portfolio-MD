@@ -1,7 +1,8 @@
 import Button from "@/components/Button";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { COMPANY_NAME } from "@/constants/site";
 import emailjs from "@emailjs/browser";
-import { Mail, MapPin, Send } from "lucide-react";
+import { Building2, Mail, MapPin, Send } from "lucide-react";
 import React, { useState } from "react";
 
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY ?? "";
@@ -19,7 +20,7 @@ function dotVariation(index, salt) {
 	return x - Math.floor(x);
 }
 
-const contactInfo = [
+const baseContactInfo = [
 	{
 		icon: <Mail size={20} />,
 		label: "E-mail",
@@ -41,6 +42,20 @@ const contactInfo = [
 ];
 
 export default function Contact() {
+	const contactInfo = [
+		...(COMPANY_NAME
+			? [
+					{
+						icon: <Building2 size={20} />,
+						label: "Entreprise",
+						value: COMPANY_NAME,
+						href: null,
+					},
+				]
+			: []),
+		...baseContactInfo,
+	];
+
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -138,25 +153,34 @@ export default function Contact() {
 						<div className="glass rounded-3xl p-8 border border-primary/30">
 							<h3 className="text-xl font-semibold mb-6">Informations de contact</h3>
 							<div className="space-y-4">
-								{contactInfo.map((item) => (
-									<a
-										key={item.label}
-										href={item.href}
-										className="flex items-center gap-4 rounded-xl border border-primary/30 p-4 transition-colors hover:bg-surface group"
-									>
-										<span className="mt-0.5 shrink-0 text-primary">
-											{item.icon}
-										</span>
-										<div>
-											<p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-												{item.label}
-											</p>
-											<p className="mt-1 text-sm text-foreground">
-												{item.value}
-											</p>
+								{contactInfo.map((item) => {
+									const body = (
+										<>
+											<span className="mt-0.5 shrink-0 text-primary">
+												{item.icon}
+											</span>
+											<div>
+												<p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+													{item.label}
+												</p>
+												<p className="mt-1 text-sm text-foreground">
+													{item.value}
+												</p>
+											</div>
+										</>
+									);
+									const className =
+										"flex items-center gap-4 rounded-xl border border-primary/30 p-4 transition-colors hover:bg-surface group";
+									return item.href ? (
+										<a key={item.label} href={item.href} className={className}>
+											{body}
+										</a>
+									) : (
+										<div key={item.label} className={className}>
+											{body}
 										</div>
-									</a>
-								))}
+									);
+								})}
 							</div>
 						</div>
             {/* Availability Card */}

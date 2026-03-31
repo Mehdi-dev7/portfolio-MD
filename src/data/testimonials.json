@@ -1,32 +1,18 @@
 [
 	{
-		"quote": "Wilfrid a livré une interface Next.js propre et performante, avec une vraie écoute sur les contraintes métier. Communication claire et itérations rapides.",
-		"author": "Claire Dumont",
-		"role": "Cheffe de produit",
-		"company": "SaaS B2B"
+		"prenom": "Mehdi",
+		"avis": "Mon site a ete developpe par MD Tech Digital avec une grande attention au detail. Il a su integrer mes demandes et me proposer des solutions innovantes. Je recommande vivement.",
+		"rating": 5
 	},
 	{
-		"quote": "Autonome sur React et TypeScript, il a su intégrer notre design system et proposer des améliorations UX pertinentes. Je recommande pour du front exigeant.",
-		"author": "Marc Lefèvre",
-		"role": "Lead développement",
-		"company": "Agence web"
+		"prenom": "Seta",
+		"avis": "J’ai adoré faire appel à MD Tech Digital. Je recommande vivement cette personne ! Elle a réalisé mon site avec beaucoup de professionnalisme et de créativité. Elle a su comprendre parfaitement mes attentes et les traduire en un résultat à la hauteur de mes espérances, voire au-delà. \n La communication a été fluide, les délais respectés, et le rendu final est moderne, esthétique et fonctionnel. Un vrai plaisir de collaborer ensemble ! ",
+
+		"rating": 5
 	},
 	{
-		"quote": "Excellente collaboration sur un outil interne : APIs, formulaires complexes, déploiement sans surprise. Du code lisible et documenté.",
-		"author": "Julie Bernard",
-		"role": "CTO",
-		"company": "Startup"
-	},
-	{
-		"quote": "Sérieux, curieux des outils (IA, automatisation) sans les mettre partout pour autant. Le projet a été tenu dans les délais annoncés.",
-		"author": "Thomas Renard",
-		"role": "Fondateur",
-		"company": "E-commerce"
-	},
-	{
-		"quote": "Un profil full-stack orienté qualité : revues de code constructives, tests là où il fallait, et une vraie volonté de maintenabilité.",
-		"author": "Émilie Faure",
-		"role": "Engineering Manager",
-		"company": "Scale-up"
+		"prenom": "Julie",
+		"avis": "Excellente collaboration sur un outil interne : APIs, formulaires complexes, déploiement sans surprise. Du code lisible et documenté.",
+		"rating": 5
 	}
 ]
