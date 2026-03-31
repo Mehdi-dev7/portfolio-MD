@@ -150,7 +150,7 @@ export default function Contact() {
 				<div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-12 lg:grid-cols-2">
 					{/* Contact Info */}
 					<div className="animation-delay-400 animate-fade-in space-y-6 lg:order-2 ">
-						<div className="glass rounded-3xl p-8 border border-primary/30">
+						<div className="glass rounded-3xl p-4 xs:p-6 sm:p-8 border border-primary/30">
 							<h3 className="text-xl font-semibold mb-6">Informations de contact</h3>
 							<div className="space-y-4">
 								{contactInfo.map((item) => {
@@ -184,7 +184,7 @@ export default function Contact() {
 							</div>
 						</div>
             {/* Availability Card */}
-            <div className="glass rounded-3xl p-8 border border-primary/30">
+            <div className="glass rounded-3xl p-6  sm:p-8 border border-primary/30">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
                 <span className="font-medium"></span>
@@ -195,7 +195,7 @@ export default function Contact() {
             </div>
 					</div>
 					{/* Contact Form */}
-					<div className="glass animation-delay-300 animate-fade-in rounded-3xl border border-primary/30 p-8 lg:order-1">
+					<div className="glass animation-delay-300 animate-fade-in rounded-3xl border border-primary/30 p-4 xs:p-6 md:p-8 lg:order-1">
 						{!emailJsConfigured && (
 							<p
 								className="mb-4 rounded-xl border border-highlight/40 bg-highlight/10 px-4 py-3 text-sm text-muted-foreground"
@@ -301,7 +301,7 @@ export default function Contact() {
 							<Button
 								type="submit"
 								className="w-full justify-center"
-								size="lg"
+								size="md"
 								disabled={isLoading || !emailJsConfigured}
 							>
 								{isLoading ? (
