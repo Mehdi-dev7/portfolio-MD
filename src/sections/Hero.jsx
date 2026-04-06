@@ -73,7 +73,10 @@ function SkillChip({ skill }) {
 					? `https://cdn.simpleicons.org/${slug}/${SKILL_ICON_TINT}`
 					: null;
 	return (
-		<div className="flex shrink-0 items-center gap-2.5 px-5 py-3 sm:gap-3 sm:px-8 sm:py-4">
+		<div
+			className="notranslate flex shrink-0 items-center gap-2.5 px-5 py-3 sm:gap-3 sm:px-8 sm:py-4"
+			translate="no"
+		>
 			{iconSrc ? (
 				<img
 					src={iconSrc}
@@ -222,7 +225,10 @@ export default function Hero() {
 								>
 									·
 								</span>
-								<span className="text-center text-foreground/90 text-xs sm:text-sm">
+								<span
+									className="notranslate text-center text-foreground/90 text-xs sm:text-sm"
+									translate="no"
+								>
 									React / Next.js
 								</span>
 							</span>
@@ -232,7 +238,10 @@ export default function Hero() {
 							<p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-foreground/90 animate-fade-in animation-delay-100">
 								Produits web & workflows intelligents
 							</p>
-							<h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight animate-fade-in animation-delay-200">
+							<h1
+								className="notranslate text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight animate-fade-in animation-delay-200"
+								translate="no"
+							>
 								<span className="block">
 									Code <span className="text-primary glow-text">propre</span>,
 								</span>
@@ -248,7 +257,10 @@ export default function Hero() {
 								<strong className="font-semibold text-foreground/90">
 									Wilfrid
 								</strong>{" "}
-								— je crée des applications web (React, Next.js, TypeScript)
+								— je crée des applications web{" "}
+								<span className="notranslate" translate="no">
+									(React, Next.js, TypeScript)
+								</span>{" "}
 								et j’intègre{" "}
 								<strong className="font-semibold text-primary/95">
 									l’IA et l’automatisation

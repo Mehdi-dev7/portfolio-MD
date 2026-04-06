@@ -132,7 +132,10 @@ export default function Projects() {
 							<ProjectCard project={project} index={index} />
 							<div className="space-y-4 p-6">
 								<div className="flex items-start justify-between">
-									<h3 className="text-xl font-semibold transition-colors group-hover:text-primary">
+									<h3
+										className="notranslate text-xl font-semibold transition-colors group-hover:text-primary"
+										translate="no"
+									>
 										{project.title}
 									</h3>
 									<ArrowUpRight
@@ -145,7 +148,8 @@ export default function Projects() {
 									{project.tags.map((tag) => (
 										<span
 											key={tag}
-											className="rounded-full border border-border/50 bg-surface px-4 py-1.5 text-xs font-medium text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:text-primary"
+											className="notranslate rounded-full border border-border/50 bg-surface px-4 py-1.5 text-xs font-medium text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:text-primary"
+											translate="no"
 										>
 											{tag}
 										</span>
