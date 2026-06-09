@@ -29,7 +29,7 @@ const projects = [
 		description: 'Lady-Haya est une application de e-commerce pour la vente de vêtements pour femmes.',
 		image: imgLadyHaya,
 		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Supabase', 'Sanity'],
-		link: 'https://lady-haya-wear-beta.vercel.app/',
+		link: 'https://lady-haya-wear-lady-hayas-projects.vercel.app',
 		github: 'https://github.com/Mehdi-dev7/lady-haya-wear',
 	},
 	{
