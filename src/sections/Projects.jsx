@@ -7,6 +7,7 @@ import imgSetup from '@/images/projets/Projet-Setup.png'
 import imgSelmalya from '@/images/projets/Projet-Selmalya.png'
 import imgDashboardSaaS from '@/images/projets/Projet-dashboard.png'
 import imgCloneThreads from '@/images/projets/Projet-thread-clone.png'
+import imgLLDI from '@/images/projets/Projet-LLDI.png'
 import AnimatedBorderButton from '@/components/AnimatedBorderButton'
 
 /** Aligné sur About : positions stables pour les points. */
@@ -17,19 +18,25 @@ function dotVariation(index, salt) {
 
 const projects = [
 	{
+		title: "La langue de l'islam",
+		description: "Plateforme de e-learning avec cours en visio (Zoom) dédiée à l'apprentissage de la langue arabe.",
+		image: imgLLDI,
+		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
+		link: 'https://lalanguedelislam.com/',
+	},
+	{
 		title: 'Facturnow',
 		description: 'Facturnow est une application de facturation en ligne qui permet de gérer facilement vos factures et vos clients.',
 		image: imgFacturnow,
 		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Supabase', 'N8N'],
 		link: 'https://facturnow.fr',
-		github: 'https://github.com/facturnow',
 	},
 	{
 		title: 'Lady-Haya',
 		description: 'Lady-Haya est une application de e-commerce pour la vente de vêtements pour femmes.',
 		image: imgLadyHaya,
 		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Supabase', 'Sanity'],
-		link: 'https://lady-haya-wear-lady-hayas-projects.vercel.app',
+		link: 'https://lady-haya-wear-git-main-lady-hayas-projects.vercel.app',
 		github: 'https://github.com/Mehdi-dev7/lady-haya-wear',
 	},
 	{
@@ -131,7 +138,12 @@ export default function Projects() {
 						>
 							<ProjectCard project={project} index={index} />
 							<div className="space-y-4 p-6">
-								<div className="flex items-start justify-between">
+								<a
+									href={project.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-start justify-between"
+								>
 									<h3
 										className="notranslate text-xl font-semibold transition-colors group-hover:text-primary"
 										translate="no"
@@ -142,7 +154,7 @@ export default function Projects() {
 										className="size-5 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary"
 										aria-hidden
 									/>
-								</div>
+								</a>
 								<p className="text-sm text-muted-foreground">{project.description}</p>
 								<div className="flex flex-wrap gap-2">
 									{project.tags.map((tag) => (
