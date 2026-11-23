@@ -8,5 +8,6 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-resolve: {alias: { '@': path.resolve(__dirname, 'src'), }, },
+  // import.meta.dirname = équivalent ESM de __dirname (qui n'existe pas dans un module ES)
+  resolve: { alias: { '@': path.resolve(import.meta.dirname, 'src') } },
 })
