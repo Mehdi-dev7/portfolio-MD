@@ -19,21 +19,35 @@ function dotVariation(index, salt) {
 const projects = [
 	{
 		title: "La langue de l'islam",
-		description: "Plateforme de e-learning avec cours en visio (Zoom) dédiée à l'apprentissage de la langue arabe.",
+		description: "Plateforme complète d'apprentissage de la langue arabe : cours en direct, suivi pédagogique et boutique en ligne, réunis dans un seul écosystème.",
+		highlights: [
+			['Espace élève e-learning', 'cours, progression, ressources et planning des séances'],
+			['Classes en visio Zoom', 'création et accès aux sessions en direct, directement depuis la plateforme'],
+			['Dashboard admin', 'gestion des élèves, des professeurs, des cours et des inscriptions'],
+			['Espace e-commerce', 'vente des manuels de cours avec paiement en ligne'],
+		],
 		image: imgLLDI,
 		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript'],
 		link: 'https://lalanguedelislam.com/',
 	},
 	{
 		title: 'Facturnow',
-		description: 'Facturnow est une application de facturation en ligne qui permet de gérer facilement vos factures et vos clients.',
+		description: 'SaaS de facturation complet pour freelances, auto-entrepreneurs et PME : du devis au paiement encaissé, avec prélèvement SEPA automatique pour en finir avec les impayés.',
+		highlights: [
+			['Tous les documents', 'devis, factures, acomptes, avoirs, proformas, bons de commande et de livraison, export PDF'],
+			['Paiement en ligne', 'carte (Stripe), PayPal et prélèvement SEPA (GoCardless) directement depuis la facture'],
+			['Automatisation', 'factures récurrentes et relances automatiques sur 3 niveaux'],
+			['Facture électronique', 'émission et réception via plateforme agréée (réforme 2026)'],
+			['Pilotage', 'statistiques, export comptable FEC / CSV, API & webhooks'],
+		],
 		image: imgFacturnow,
-		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Supabase', 'N8N'],
+		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Supabase', 'Stripe'],
 		link: 'https://facturnow.fr',
 	},
 	{
 		title: 'Lady-Haya',
-		description: 'Lady-Haya est une application de e-commerce pour la vente de vêtements pour femmes.',
+		description: "Boutique e-commerce de prêt-à-porter féminin : catalogue géré via Sanity CMS, panier et parcours d'achat complet. Le développement est suspendu à la demande de la cliente.",
+		status: 'Projet en pause',
 		image: imgLadyHaya,
 		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Supabase', 'Sanity'],
 		link: 'https://lady-haya-wear-git-main-lady-hayas-projects.vercel.app',
@@ -155,7 +169,27 @@ export default function Projects() {
 										aria-hidden
 									/>
 								</a>
+								{/* Badge de statut optionnel (ex. projet en pause) */}
+								{project.status && (
+									<span className="inline-flex items-center gap-2 rounded-full border border-highlight/40 bg-highlight/10 px-3 py-1 text-xs font-medium text-highlight">
+										<span className="size-1.5 rounded-full bg-highlight" aria-hidden />
+										{project.status}
+									</span>
+								)}
 								<p className="text-sm text-muted-foreground">{project.description}</p>
+								{/* Points clés optionnels : [titre, détail] */}
+								{project.highlights && (
+									<ul className="space-y-2">
+										{project.highlights.map(([title, detail]) => (
+											<li key={title} className="flex gap-2.5 text-sm text-muted-foreground">
+												<span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
+												<span>
+													<strong className="font-medium text-foreground">{title}</strong> : {detail}
+												</span>
+											</li>
+										))}
+									</ul>
+								)}
 								<div className="flex flex-wrap gap-2">
 									{project.tags.map((tag) => (
 										<span

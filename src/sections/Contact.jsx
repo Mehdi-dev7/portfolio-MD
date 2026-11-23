@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { COMPANY_NAME } from "@/constants/site";
 import emailjs from "@emailjs/browser";
-import { Building2, Mail, MapPin, Send } from "lucide-react";
+import { Building2, Mail, MapPin, Phone, Send } from "lucide-react";
 import React, { useState } from "react";
 
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY ?? "";
@@ -32,6 +32,13 @@ const baseContactInfo = [
 		label: "WhatsApp",
 		value: "+33 6 50 15 70 32",
 		href: "https://wa.me/33650157032",
+	},
+	{
+		// Numéro secondaire (ligne On/Off) — lien tel: pour appeler direct depuis un téléphone
+		icon: <Phone size={20} />,
+		label: "Téléphone",
+		value: "07 80 97 67 45",
+		href: "tel:+33780976745",
 	},
 	{
 		icon: <MapPin size={20} />,
