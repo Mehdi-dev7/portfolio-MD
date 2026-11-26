@@ -8,6 +8,7 @@ import imgSelmalya from '@/images/projets/Projet-Selmalya.png'
 import imgDashboardSaaS from '@/images/projets/Projet-dashboard.png'
 import imgCloneThreads from '@/images/projets/Projet-thread-clone.png'
 import imgLLDI from '@/images/projets/Projet-LLDI.png'
+import imgMeetDebrief from '@/images/projets/Projet-MeetDebrief.png'
 import AnimatedBorderButton from '@/components/AnimatedBorderButton'
 
 /** Aligné sur About : positions stables pour les points. */
@@ -17,6 +18,20 @@ function dotVariation(index, salt) {
 }
 
 const projects = [
+	{
+		title: 'MeetDebrief',
+		description: "SaaS propulsé par l'IA qui transforme un enregistrement audio en document exploitable : les réunions deviennent des comptes rendus, les cours des fiches de révision.",
+		highlights: [
+			['Mode Pro', 'résumé exécutif, décisions, actions avec responsable et deadline, email récap prêt à envoyer'],
+			['Mode Étudiant', 'fiche de révision structurée et flashcards générées automatiquement, 13 matières'],
+			['3 sources audio', 'micro en direct, import de fichier ou bot qui rejoint Zoom, Meet et Teams'],
+			['Pilote automatique', "le bot rejoint seul les réunions du Google Agenda, avec espace équipe partagé"],
+			['Abonnements & app mobile', 'plans Stripe à la minute et application iOS / Android (Expo)'],
+		],
+		image: imgMeetDebrief,
+		tags: ['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Supabase', 'Stripe', 'IA (Whisper + Claude)'],
+		link: 'https://meetdebrief.fr',
+	},
 	{
 		title: "La langue de l'islam",
 		description: "Plateforme complète d'apprentissage de la langue arabe : cours en direct, suivi pédagogique et boutique en ligne, réunis dans un seul écosystème.",
