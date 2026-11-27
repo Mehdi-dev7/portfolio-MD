@@ -1,5 +1,10 @@
 [
 	{
+		"prenom": "Kévin",
+		"avis": "J'ai fait appel à Mehdi pour la refonte totale de mon site internet qui était auparavant sur Wordpress, afin qu'il soit plus esthétique, plus sécurisé et centralisé sur un seul Dashboard.\nLe résultat final est juste excellent, il y a toutes les fonctionnalités que je lui avais demandées, et des nouvelles qui sont très pratiques ! Depuis que j'utilise le site je n'ai pas perçu de problème véritable, tout fonctionne bien.\nLes échanges avec Mehdi pour effectuer des modifications ici et là sont très simples et ses retours sont rapides.\nJe suis vraiment content du site qui m'a produit, qui en vérité contient 3 sites (un site vitrine principal avec sa boutique et son blog, puis 2 sites distincts d'apprentissage avec espace étudiant). Les étudiants apprécient fortement le travail effectué, les fonctionnalités, la facilité de navigation et le nouvel visuel apportés.\nJe remercie fortement Mehdi pour ce travail professionnel. \nSi vous avez besoin d'un site de qualité, de A à Z, je vous le recommande fortement avant tout autre !",
+		"rating": 5
+	},
+	{
 		"prenom": "Mehdi",
 		"avis": "Mon site a ete developpe par MD Tech Digital avec une grande attention au detail. Il a su integrer mes demandes et me proposer des solutions innovantes. Je recommande vivement.",
 		"rating": 5
@@ -7,7 +12,6 @@
 	{
 		"prenom": "Seta",
 		"avis": "J’ai adoré faire appel à MD Tech Digital. Je recommande vivement cette personne ! Elle a réalisé mon site avec beaucoup de professionnalisme et de créativité. Elle a su comprendre parfaitement mes attentes et les traduire en un résultat à la hauteur de mes espérances, voire au-delà. \n La communication a été fluide, les délais respectés, et le rendu final est moderne, esthétique et fonctionnel. Un vrai plaisir de collaborer ensemble ! ",
-
 		"rating": 5
 	},
 	{

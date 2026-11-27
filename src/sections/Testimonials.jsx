@@ -147,6 +147,8 @@ function stackLayer(position, compact) {
 
 export default function Testimonials() {
 	const [active, setActive] = useState(0);
+	/* Avis actif déplié via « Lire la suite » (refermé dès qu'on change de carte). */
+	const [expanded, setExpanded] = useState(false);
 	const [reduceMotion, setReduceMotion] = useState(false);
 	const [compactStack, setCompactStack] = useState(
 		() => typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches,
@@ -155,8 +157,13 @@ export default function Testimonials() {
 
 	const stackDepth = compactStack ? STACK_DEPTH_MOBILE : STACK_DEPTH_DESKTOP;
 
-	const goPrev = () => setActive((i) => (i - 1 + n) % n);
-	const goNext = () => setActive((i) => (i + 1) % n);
+	/* Toute navigation referme l'avis déplié : la carte suivante repart en version courte. */
+	const goTo = (index) => {
+		setExpanded(false);
+		setActive(index);
+	};
+	const goPrev = () => goTo((active - 1 + n) % n);
+	const goNext = () => goTo((active + 1) % n);
 
 	useEffect(() => {
 		const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -174,14 +181,17 @@ export default function Testimonials() {
 		return () => mq.removeEventListener("change", update);
 	}, []);
 
-	/* Défilement auto : le timer repart à zéro à chaque changement d’avis (manuel ou auto). */
+	/*
+	  Défilement auto : le timer repart à zéro à chaque changement d’avis (manuel ou auto).
+	  En pause tant qu'un avis est déplié, sinon la carte partirait en pleine lecture.
+	*/
 	useEffect(() => {
-		if (reduceMotion) return;
+		if (reduceMotion || expanded) return;
 		const id = window.setInterval(() => {
 			setActive((i) => (i + 1) % n);
 		}, ROTATION_MS);
 		return () => window.clearInterval(id);
-	}, [reduceMotion, n, active]);
+	}, [reduceMotion, expanded, n, active]);
 
 	return (
 		<section
@@ -264,6 +274,8 @@ export default function Testimonials() {
 							const hidden = pos >= stackDepth;
 							const { display: avisDisplay, truncated: avisTruncated } =
 								truncateWords(t.avis, AVIS_MAX_WORDS);
+							/* Seule la carte du dessus peut être dépliée. */
+							const showFull = pos === 0 && expanded && avisTruncated;
 							return (
 								<article
 									key={index}
@@ -297,14 +309,36 @@ export default function Testimonials() {
 									/>
 									<blockquote
 										className="text-foreground/95 leading-relaxed"
-										{...(avisTruncated
+										{...(avisTruncated && !showFull
 											? { "aria-label": t.avis }
 											: {})}
 									>
-										<p className="text-base leading-relaxed md:text-lg">
-											&ldquo;{avisDisplay}&rdquo;
+										{/*
+										  Version dépliée : hauteur plafonnée + défilement interne, pour que la
+										  carte (en absolute) ne déborde pas sur les flèches. pre-line respecte
+										  les retours à la ligne de l'avis.
+										*/}
+										<p
+											className={`text-base leading-relaxed md:text-lg ${
+												showFull
+													? "max-h-[45svh] overflow-y-auto overscroll-contain whitespace-pre-line pr-2 sm:max-h-72"
+													: ""
+											}`}
+										>
+											&ldquo;{showFull ? t.avis.trim() : avisDisplay}&rdquo;
 										</p>
 									</blockquote>
+									{/* Bouton uniquement sur la carte active : les cartes du dessous sont aria-hidden. */}
+									{avisTruncated && pos === 0 && (
+										<button
+											type="button"
+											onClick={() => setExpanded((v) => !v)}
+											aria-expanded={showFull}
+											className="mt-3 cursor-pointer text-sm font-medium text-primary underline-offset-4 transition hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+										>
+											{showFull ? "Réduire" : "Lire la suite"}
+										</button>
+									)}
 									<footer className="mt-4 sm:mt-6 border-t border-border/40 pt-3 sm:pt-5">
 										<StarRating value={t.rating} />
 										<p className="mt-2 font-semibold text-foreground">{t.prenom}</p>
@@ -340,7 +374,7 @@ export default function Testimonials() {
 												? "w-8 bg-primary"
 												: "w-2.5 bg-muted-foreground/35 hover:bg-muted-foreground/55"
 										}`}
-										onClick={() => setActive(index)}
+										onClick={() => goTo(index)}
 									/>
 								))}
 							</div>
